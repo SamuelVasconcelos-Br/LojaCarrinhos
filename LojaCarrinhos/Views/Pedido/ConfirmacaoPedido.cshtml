@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "Pedido Confirmado";
+}
+<head>
+    <head>
+        <link rel="stylesheet" href="~/css/estilo.css" asp-append-version="true" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+        <link rel="shortcut icon" href="img/car_23773.png" />
+    </head>
+</head>
+<main class="container mt-5 pt-5 text-center">
+    <div class="empty-cart-container">
+        <i class="fas fa-check-circle fa-4x text-success mb-3"></i>
+        <h1 class="display-5 fw-bold">Obrigado pelo seu pedido!</h1>
+        <p class="lead text-muted">Seu pedido foi recebido e está sendo processado. Você receberá um e-mail com os detalhes em breve.</p>
+        <a asp-controller="Home" asp-action="Index" class="btn btn-primary mt-3">
+            <i class="fas fa-store me-2"></i> Voltar para a loja
+        </a>
+    </div>
+</main>

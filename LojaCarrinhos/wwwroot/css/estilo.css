@@ -266,3 +266,60 @@ body {
     border-left: 5px solid #3498db;
 }
 
+/* --- PÁGINA DE CHECKOUT --- */
+
+.checkout-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* Coluna do form maior que a do resumo */
+    gap: 30px;
+}
+
+/* Estilos para os inputs e labels do formulário */
+.form-label {
+    color: #a0a0a0;
+    margin-bottom: .5rem;
+    font-weight: 500;
+}
+
+.form-column section h4 {
+    color: #3498db;
+    border-bottom: 1px solid #333;
+    padding-bottom: 10px;
+}
+
+/* Estilos para a coluna de resumo do pedido */
+.order-summary {
+    background-color: #1e1e1e;
+    border-radius: 15px;
+    padding: 25px;
+    border: 1px solid #333;
+    position: sticky; /* Fica fixo na tela durante o scroll */
+    top: 100px;
+}
+
+    .order-summary h4 {
+        margin-bottom: 15px;
+    }
+
+    .order-summary .list-group-item {
+        background-color: transparent;
+        color: #e0e0e0;
+        border-color: #333;
+        padding: 15px 0;
+    }
+
+    .order-summary hr {
+        margin: 20px 0;
+        border-color: #333;
+    }
+
+/* Responsividade para telas menores */
+@media (max-width: 992px) {
+    .checkout-grid {
+        grid-template-columns: 1fr; /* As colunas ficam uma sobre a outra */
+    }
+
+    .summary-column {
+        grid-row-start: 1; /* O resumo do pedido aparece primeiro em telas pequenas */
+    }
+}

@@ -1,0 +1,109 @@
+﻿@model LojaCarrinhos.Models.CheckoutViewModel
+
+@{
+    ViewData["Title"] = "Finalizar Compra";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/estilo.css" asp-append-version="true" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="img/car_23773.png" />
+</head>
+
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top shadow-sm">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="/">
+            <i class="fas fa-car-side me-2"></i> Lojinha de Miniaturas
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="/">Início</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Carrinho" asp-action="Index">
+                        <i class="fas fa-shopping-cart me-1"></i> Carrinho
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<main class="container mt-5 pt-5">
+    <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold text-gradient">Finalizar Compra</h1>
+        <p class="lead text-muted">Preencha seus dados para concluir o pedido.</p>
+    </div>
+
+    <form asp-controller="Pedido" asp-action="Checkout" method="post">
+        @Html.AntiForgeryToken()
+        <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+        <div class="checkout-grid">
+            <div class="form-column">
+                <section>
+                    <h4><i class="fas fa-shipping-fast me-2"></i> Endereço de Entrega</h4>
+                    <hr class="mt-2 mb-4">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Nome" class="form-label"></label>
+                            <input asp-for="Nome" class="form-control" />
+                            <span asp-validation-for="Nome" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Sobrenome" class="form-label"></label>
+                            <input asp-for="Sobrenome" class="form-control" />
+                            <span asp-validation-for="Sobrenome" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Endereco" class="form-label"></label>
+                        <input asp-for="Endereco" class="form-control" />
+                        <span asp-validation-for="Endereco" class="text-danger"></span>
+                    </div>
+                </section>
+
+                <section class="mt-5">
+                    <h4><i class="fas fa-credit-card me-2"></i> Dados de Pagamento</h4>
+                    <hr class="mt-2 mb-4">
+                    <div class="mb-3">
+                        <label asp-for="NomeNoCartao" class="form-label"></label>
+                        <input asp-for="NomeNoCartao" class="form-control" />
+                        <span asp-validation-for="NomeNoCartao" class="text-danger"></span>
+                    </div>
+                </section>
+            </div>
+
+            <div class="summary-column">
+                <div class="order-summary">
+                    <h4>Resumo do Pedido</h4>
+                    <ul class="list-group list-group-flush">
+                        @foreach (var item in Model.ItensDoCarrinho)
+                        {
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                @item.Produto.Nome (@item.Quantidade)
+                                <span>R$ @item.Total.ToString("F2")</span>
+                            </li>
+                        }
+                    </ul>
+                    <hr>
+                    <div class="d-flex justify-content-between fw-bold fs-5">
+                        <span>Total</span>
+                        <span class="cart-total-price">R$ @Model.TotalCarrinho.ToString("F2")</span>
+                    </div>
+                    <div class="d-grid mt-4">
+                        <button type="submit" class="btn btn-success btn-lg" asp-action="ConfirmacaoPedido">
+                            <i class="fas fa-lock me-2"></i> Finalizar Pedido
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</main>
