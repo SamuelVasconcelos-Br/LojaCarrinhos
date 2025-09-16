@@ -43,10 +43,10 @@ insert into produtos(Nome,Descricao,Preco,ImageUrl,Estoque)
 values('Miniatura Bugatti Chiron','Escala 1:24 com detalhes realistas',1781.89,'img/QQ20231109114244__95352.webp',400);
 
 insert into produtos(Nome,Descricao,Preco,ImageUrl,Estoque)
-values('Miniatura Nissan GT-R R35','Colecionável escala 1:32',100.00,'img/OIP.webp',550);
+values('Miniatura Nissan GT-R R35','Colecionável escala 1:32',1230.59,'img/OIP.webp',550);
 
 insert into produtos(Nome,Descricao,Preco,ImageUrl,Estoque)
-values('Miniatura McLaren P1','Escala 1:24 edição especial',135.00,'img/miniatura-carro-mclaren-p1-gtr-51-c-luz-e-som-california-action-1-32-california-toys-68323_a.jpeg',350);
+values('Miniatura McLaren P1','Escala 1:24 edição especial',2137.97,'img/miniatura-carro-mclaren-p1-gtr-51-c-luz-e-som-california-action-1-32-california-toys-68323_a.jpeg',350);
 select * from produtos;
 select * from pedido;
 select * from itemPedido;
