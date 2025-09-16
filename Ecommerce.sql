@@ -30,23 +30,23 @@ Quantidade int,
 PrecoUnitario decimal(10,2)
 );
 
-insert into produto(Nome,Descricao,Preco,ImageUrl,Estoque)
-values('Miniatura Ferrari LaFerrari','Escala 1:24 em metal',120.00,'img/1875bf9c617bcae10a1e3accf3897707.webp',500);
+insert into produtos(Nome,Descricao,Preco,ImageUrl,Estoque)
+values('Miniatura Ferrari LaFerrari','Escala 1:24 em metal',1200.00,'img/1875bf9c617bcae10a1e3accf3897707.webp',500);
 
-insert into produto(Nome,Descricao,Preco,ImageUrl,Estoque)
-values('Miniatura Lamborghini Aventador','Colecionável escala 1:32',110.00,'imagens/mini2.jpg',450);
+insert into produtos(Nome,Descricao,Preco,ImageUrl,Estoque)
+values('Miniatura Lamborghini Aventador','Colecionável escala 1:32',1130.00,'img/2aa947bfc0554d2cb31aad476f3c2ac2-340cbcf11001517dd516843799671842-1024-1024.webp',450);
 
-insert into produto(Nome,Descricao,Preco,ImageUrl,Estoque)
-values('Miniatura Porsche 911 GT3 RS','Modelo esportivo em liga metálica',130.00,'imagens/mini3.jpg',600);
+insert into produtos(Nome,Descricao,Preco,ImageUrl,Estoque)
+values('Miniatura Porsche 911 GT3 RS','Modelo esportivo em liga metálica',1342.90,'img/porsche-911-gt3-cerna-s-pruhem-1-18-maisto-191310019.jpeg',600);
 
-insert into produto(Nome,Descricao,Preco,ImageUrl,Estoque)
-values('Miniatura Bugatti Chiron','Escala 1:24 com detalhes realistas',140.00,'imagens/mini4.jpg',400);
+insert into produtos(Nome,Descricao,Preco,ImageUrl,Estoque)
+values('Miniatura Bugatti Chiron','Escala 1:24 com detalhes realistas',1781.89,'img/QQ20231109114244__95352.webp',400);
 
-insert into produto(Nome,Descricao,Preco,ImageUrl,Estoque)
-values('Miniatura Nissan GT-R R35','Colecionável escala 1:32',100.00,'imagens/mini5.jpg',550);
+insert into produtos(Nome,Descricao,Preco,ImageUrl,Estoque)
+values('Miniatura Nissan GT-R R35','Colecionável escala 1:32',100.00,'img/OIP.webp',550);
 
-insert into produto(Nome,Descricao,Preco,ImageUrl,Estoque)
-values('Miniatura McLaren P1','Escala 1:24 edição especial',135.00,'imagens/mini6.jpg',350);
-select * from produto;
+insert into produtos(Nome,Descricao,Preco,ImageUrl,Estoque)
+values('Miniatura McLaren P1','Escala 1:24 edição especial',135.00,'img/miniatura-carro-mclaren-p1-gtr-51-c-luz-e-som-california-action-1-32-california-toys-68323_a.jpeg',350);
+select * from produtos;
 select * from pedido;
 select * from itemPedido;
