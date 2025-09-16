@@ -1,16 +1,15 @@
 create database Ecommerce;
-
+-- drop database Ecommerce;
 use Ecommerce;
 
 -- CRIANDO AS TABELAS DO BANCO
-create table produto(
+create table produtos(
 Id int primary key auto_increment,
 Nome varchar(50),
 Descricao varchar(100),
 Preco decimal(10,2),
 ImageUrl varchar(255),
 Estoque int
-
 );
 
 create table pedido(
@@ -23,7 +22,6 @@ FormaPagamento varchar(100),
 Frete decimal (10,2)
 );
 
-
 create table itemPedido(
 Id int primary key auto_increment ,
 PedidoId int,
@@ -31,8 +29,9 @@ ProdutoId int,
 Quantidade int,
 PrecoUnitario decimal(10,2)
 );
+
 insert into produto(Nome,Descricao,Preco,ImageUrl,Estoque)
-values('Miniatura Ferrari LaFerrari','Escala 1:24 em metal',120.00,'imagens/mini1.jpg',500);
+values('Miniatura Ferrari LaFerrari','Escala 1:24 em metal',120.00,'img/1875bf9c617bcae10a1e3accf3897707.webp',500);
 
 insert into produto(Nome,Descricao,Preco,ImageUrl,Estoque)
 values('Miniatura Lamborghini Aventador','Colecionável escala 1:32',110.00,'imagens/mini2.jpg',450);

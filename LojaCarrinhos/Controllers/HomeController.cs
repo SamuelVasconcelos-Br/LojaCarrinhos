@@ -1,27 +1,27 @@
-using System.Diagnostics;
 using LojaCarrinhos.Models;
+using LojaCarrinhos.Repository;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 
 namespace LojaCarrinhos.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly ProdutoRepository _produtoRepository;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ProdutoRepository produtoRepository)
         {
             _logger = logger;
+            _produtoRepository = produtoRepository;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var produtos = await _produtoRepository.TodosProdutos();
+            return View(produtos);
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
