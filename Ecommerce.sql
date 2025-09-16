@@ -1,6 +1,6 @@
-create database EcomLoja1;
+create database Ecommerce;
 
-use EcomLoja1;
+use Ecommerce;
 
 -- CRIANDO AS TABELAS DO BANCO
 create table produto(
