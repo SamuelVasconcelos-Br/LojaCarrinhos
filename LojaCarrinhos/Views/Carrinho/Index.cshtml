@@ -1,70 +1,92 @@
 ﻿@model List<LojaCarrinhos.Models.ItemCarrinho>
 
-﻿@{
+@{
     ViewData["Title"] = "Seu Carrinho";
 }
 
-<h1>Seu Carrinho de Compras</h1>
+<head>
+    <link rel="stylesheet" href="~/css/estilo.css" asp-append-version="true" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
 
-@if (TempData["Message"] != null)
-{
-    <div class="alert alert-info">@TempData["Message"]</div>
-}
-
-@if (Model.Any())
-{
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Produto</th>
-                <th>Preço Unitário</th>
-                <th>Quantidade</th>
-                <th>Total</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>@item.Produto.Nome</td>
-                    <td>R$ @item.Preco.ToString("F2")</td>
-                    <td>
-                        <form asp-controller="Carrinho" asp-action="AlterarQuantidadeItem" method="post" class="d-inline">
-                            <input type="hidden" name="produtoId" value="@item.ProdutoId" />
-                            <input type="number" name="novaQuantidade" value="@item.Quantidade" min="1" style="width: 70px;"
-                                   onchange="this.form.submit()" />
-                        </form>
-                    </td>
-                    <td>R$ @item.Total.ToString("F2")</td>
-                    <td>
-                        <form asp-controller="Carrinho" asp-action="RemoveFromCart" method="post" class="d-inline">
-                            <input type="hidden" name="produtoId" value="@item.ProdutoId" />
-                            <button type="submit" class="btn btn-danger btn-sm">Remover</button>
-                        </form>
-                    </td>
-                </tr>
-            }
-        </tbody>
-        <tfoot>
-            <tr>
-                <td colspan="3" class="text-right"><strong>Total do Carrinho:</strong></td>
-                <td><strong>R$ @ViewBag.TotalCarrinho.ToString("F2")</strong></td>
-                <td></td>
-            </tr>
-        </tfoot>
-    </table>
-
-    <div class="text-right">
-        <a asp-controller="Pedido" asp-action="Checkout" class="btn btn-success">Finalizar Compra</a>
-        <form asp-controller="Carrinho" asp-action="LimparCarrinho" method="post" class="d-inline">
-            <button type="submit" class="btn btn-warning">Limpar Carrinho</button>
-        </form>
+<main class="container mt-5 pt-5">
+    <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold text-gradient">Seu Carrinho</h1>
+        <p class="lead text-muted">Confira os itens, ajuste as quantidades e finalize sua compra.</p>
     </div>
-}
 
-else
-{
-    <p>Seu carrinho está vazio.</p>
-    <a asp-controller="Home" asp-action="Index" class="btn btn-primary">Continuar Comprando</a>
-}
+    @if (TempData["Message"] != null)
+    {
+        <div class="alert alert-info">@TempData["Message"]</div>
+    }
+
+    @if (Model != null && Model.Any())
+    {
+        <div class="cart-container">
+            <table class="table table-cart">
+                <thead>
+                    <tr>
+                        <th scope="col" style="width: 50%;">Produto</th>
+                        <th scope="col">Preço Unit.</th>
+                        <th scope="col">Quantidade</th>
+                        <th scope="col">Subtotal</th>
+                        <th scope="col">Ação</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td data-label="Produto">@item.Produto.Nome</td>
+                            <td data-label="Preço Unit.">R$ @item.Preco.ToString("F2")</td>
+                            <td data-label="Quantidade">
+                                <form asp-controller="Carrinho" asp-action="AlterarQuantidadeItem" method="post">
+                                    <input type="hidden" name="produtoId" value="@item.ProdutoId" />
+                                    <input type="number" name="novaQuantidade" value="@item.Quantidade" min="1" class="form-control form-control-sm" onchange="this.form.submit()" />
+                                </form>
+                            </td>
+                            <td data-label="Subtotal" class="fw-bold">R$ @item.Total.ToString("F2")</td>
+                            <td data-label="Ação">
+                                <form asp-controller="Carrinho" asp-action="RemoveFromCart" method="post">
+                                    <input type="hidden" name="produtoId" value="@item.ProdutoId" />
+                                    <button type="submit" class="btn btn-danger btn-sm">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="cart-summary mt-4">
+            <div class="cart-total">
+                <span class="text-muted">Total do Carrinho:</span>
+                <span class="cart-total-price">R$ @ViewBag.TotalCarrinho.ToString("F2")</span>
+            </div>
+            <div class="cart-actions mt-3">
+                <a asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary">Continuar Comprando</a>
+                <form asp-controller="Carrinho" asp-action="LimparCarrinho" method="post" class="d-inline">
+                    <button type="submit" class="btn btn-warning">Limpar Carrinho</button>
+                </form>
+                <a asp-controller="Pedido" asp-action="Checkout" class="btn btn-success">Finalizar Compra <i class="fas fa-arrow-right ms-2"></i></a>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="text-center empty-cart-container">
+            <i class="fas fa-shopping-cart fa-4x text-muted mb-3"></i>
+            <h3>Seu carrinho está vazio.</h3>
+            <p class="text-muted">Adicione algumas miniaturas para vê-las aqui!</p>
+            <a asp-controller="Home" asp-action="Index" class="btn btn-primary mt-3">
+                <i class="fas fa-store me-2"></i> Voltar para a loja
+            </a>
+        </div>
+    }
+</main>
+
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>

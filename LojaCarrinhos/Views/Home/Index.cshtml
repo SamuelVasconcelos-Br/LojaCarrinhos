@@ -2,14 +2,19 @@
 @{
     ViewData["Title"] = "Página Inicial";
 }
+
 <head>
-    <link rel="stylesheet" href="~/css/estilo.css" />
+    <link rel="stylesheet" href="~/css/estilo.css" asp-append-version="true" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
-<!-- NAVBAR -->
-<nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top shadow-sm">
     <div class="container">
-        <a class="navbar-brand fw-bold" href="/">Lojinha de miniaturas</a>
+        <a class="navbar-brand fw-bold" href="/">
+            <i class="fas fa-car-side me-2"></i> Lojinha de Miniaturas
+        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -20,48 +25,53 @@
                     <a class="nav-link active" href="/">Início</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" asp-controller="Carrinho" asp-action="Index">🛒 Carrinho</a>
+                    <a class="nav-link" asp-controller="Carrinho" asp-action="Index">
+                        <i class="fas fa-shopping-cart me-1"></i> Carrinho
+                    </a>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
 
-<!-- CONTEÚDO -->
-<div class="container mt-5 pt-5">
+<main class="container mt-5 pt-5">
     <div class="text-center mb-5">
         <h1 class="display-4 fw-bold text-gradient">Nossos Produtos</h1>
-        <p class="lead text-muted">Escolha sua miniatura favorita e adicione ao carrinho!</p>
+        <p class="lead text-muted">Escolha sua miniatura favorita e adicione ao carrinho! 🏎️</p>
     </div>
 
     <div class="row g-4">
         @foreach (var produto in Model)
         {
-            <div class="col-md-4 col-sm-6">
-                <div class="card produto-card h-100 shadow-sm border-0">
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card produto-card h-100 border-0 shadow-sm">
                     <img src="@produto.ImageUrl" class="card-img-top" alt="@produto.Nome">
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title fw-semibold">@produto.Nome</h5>
-                        <p class="card-text text-muted">@produto.Descricao</p>
+                        <p class="card-text text-muted flex-grow-1">@produto.Descricao</p>
                         <p class="card-text preco">R$ @produto.Preco.ToString("F2")</p>
                         <p class="card-text"><small class="text-muted">Estoque: @produto.Estoque</small></p>
 
                         <form asp-controller="Carrinho" asp-action="AdicionarCarrinho" method="post" class="mt-auto">
                             <input type="hidden" name="produtoId" value="@produto.Id" />
-                            <div class="form-group mb-2">
-                                <label for="quantidade-@produto.Id" class="form-label">Quantidade:</label>
-                                <input type="number" id="quantidade-@produto.Id"
-                                       name="quantidade"
-                                       class="form-control form-control-sm"
-                                       value="1"
-                                       min="1"
-                                       max="@produto.Estoque" />
+                            <div class="d-flex align-items-center">
+                                <input type="number" name="quantidade" class="form-control form-control-sm me-2" value="1" min="1" max="@produto.Estoque" style="width: 70px;" />
+                                <button type="submit" class="btn btn-add w-100">
+                                    <i class="fas fa-cart-plus me-2"></i> Adicionar
+                                </button>
                             </div>
-                            <button type="submit" class="btn btn-add">Adicionar ao Carrinho</button>
                         </form>
                     </div>
                 </div>
             </div>
         }
     </div>
-</div>
+</main>
+
+<footer class="footer-custom text-center py-4 mt-5">
+    <div class="container">
+        <p class="mb-0">&copy; @DateTime.Now.Year Lojinha de Miniaturas - Todos os direitos reservados.</p>
+    </div>
+</footer>
+
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>

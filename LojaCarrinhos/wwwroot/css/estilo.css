@@ -1,25 +1,268 @@
-﻿/* Navbar personalizada */
+﻿/* Importa a fonte 'Poppins' do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/* ESTILOS GERAIS - TEMA ESCURO */
+body {
+    font-family: 'Poppins', sans-serif;
+    /* Um cinza quase preto, mais suave para os olhos que o preto puro */
+    background-color: #121212;
+    /* Cor de texto principal clara */
+    color: #e0e0e0;
+}
+
+/* NAVBAR PERSONALIZADA */
 .navbar-custom {
-    background: linear-gradient(90deg, #007bff, #6610f2);
-    padding: 12px 0;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    /* Um pouco mais claro que o fundo para se destacar */
+    background-color: #1c1c1c;
+    border-bottom: 1px solid #333; /* Adiciona uma linha sutil de separação */
 }
 
-.navbar-brand {
-    font-size: 1.5rem;
-    color: #fff !important;
-    letter-spacing: 1px;
-}
-
-.navbar-nav .nav-link {
-    color: #e0e0e0 !important;
-    margin-left: 15px;
-    font-weight: 500;
-    transition: color 0.3s ease;
-}
-
-    .navbar-nav .nav-link:hover,
-    .navbar-nav .nav-link.active {
-        color: #fff !important;
-        text-decoration: underline;
+    .navbar-custom .navbar-brand,
+    .navbar-custom .nav-link {
+        color: #ecf0f1;
+        transition: color 0.3s ease;
     }
+
+        .navbar-custom .nav-link:hover,
+        .navbar-custom .nav-link.active {
+            color: #3498db; /* O azul vibrante se destaca lindamente no escuro */
+        }
+
+/* TÍTULO COM GRADIENTE */
+.text-gradient {
+    background: -webkit-linear-gradient(45deg, #8e44ad, #3498db);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+}
+
+/* TEXTO SECUNDÁRIO */
+.text-muted {
+    color: #a0a0a0 !important; /* Um cinza mais claro para textos secundários */
+}
+
+/* CARD DE PRODUTO */
+.produto-card {
+    border-radius: 15px;
+    overflow: hidden;
+    /* Cor do card um pouco mais clara que o fundo do corpo */
+    background-color: #1e1e1e;
+    border: 1px solid #333; /* Borda sutil para definir o card */
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .produto-card:hover {
+        transform: translateY(-10px);
+        border-color: #3498db; /* Borda fica azul ao passar o mouse */
+        /* Sombra colorida (glow effect) que funciona bem em temas escuros */
+        box-shadow: 0 0 20px rgba(52, 152, 219, 0.2);
+    }
+
+    .produto-card .card-img-top {
+        height: 200px;
+        object-fit: cover;
+    }
+
+    .produto-card .card-title {
+        color: #ffffff; /* Título do card em branco puro para destaque */
+        min-height: 50px;
+    }
+
+    .produto-card .preco {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #2ecc71; /* Um verde um pouco mais vibrante para o preço */
+    }
+
+/* INPUT DE QUANTIDADE */
+.form-control {
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #555;
+}
+
+    .form-control:focus {
+        background-color: #333;
+        color: #fff;
+        border-color: #3498db;
+        box-shadow: 0 0 0 0.25rem rgba(52, 152, 219, 0.25);
+    }
+
+
+/* BOTÃO "ADICIONAR AO CARRINHO" */
+.btn-add {
+    background: linear-gradient(45deg, #8e44ad, #3498db);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 15px;
+    font-weight: 500;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+    .btn-add:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        color: white;
+    }
+
+/* RODAPÉ */
+.footer-custom {
+    background-color: #1c1c1c; /* Mesma cor da navbar para consistência */
+    color: #ecf0f1;
+    border-top: 1px solid #333;
+    width: 100%;
+}
+
+
+/* --- PÁGINA DO CARRINHO --- */
+
+.cart-container {
+    background-color: #1e1e1e;
+    border-radius: 15px;
+    padding: 20px;
+    border: 1px solid #333;
+}
+
+/* Estilo da tabela do carrinho para o tema escuro */
+.table-cart {
+    color: #e0e0e0;
+    border-color: #333;
+    width: 100%;
+}
+
+    .table-cart thead {
+        border-bottom: 2px solid #3498db; /* Linha azul para destacar o cabeçalho */
+    }
+
+    .table-cart th {
+        color: #ffffff;
+        font-weight: 600;
+        border: none;
+        text-transform: uppercase;
+        font-size: 0.85rem;
+        letter-spacing: 0.5px;
+    }
+
+    .table-cart tbody tr {
+        border-bottom: 1px solid #333;
+        transition: background-color 0.2s ease;
+    }
+
+        .table-cart tbody tr:last-child {
+            border-bottom: none; /* Remove a borda da última linha */
+        }
+
+        .table-cart tbody tr:hover {
+            background-color: #2a2a2a; /* Efeito hover sutil nas linhas */
+        }
+
+    .table-cart td {
+        vertical-align: middle;
+        padding: 15px 10px;
+        border: none;
+    }
+
+/* Resumo e Ações do Carrinho */
+.cart-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* Para responsividade */
+    gap: 20px;
+}
+
+.cart-total {
+    background-color: #1e1e1e;
+    border-radius: 10px;
+    padding: 15px 25px;
+    border: 1px solid #333;
+}
+
+    .cart-total span {
+        font-size: 1.2rem;
+    }
+
+.cart-total-price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #2ecc71; /* Verde para o total, consistência visual */
+    margin-left: 15px;
+}
+
+.cart-actions {
+    display: flex;
+    gap: 15px; /* Espaçamento entre os botões */
+}
+
+/* Estilos personalizados para os botões do Bootstrap */
+.btn-success {
+    background-color: #27ae60;
+    border-color: #27ae60;
+}
+
+    .btn-success:hover {
+        background-color: #2ecc71;
+        border-color: #2ecc71;
+    }
+
+.btn-danger {
+    background-color: #c0392b;
+    border-color: #c0392b;
+}
+
+    .btn-danger:hover {
+        background-color: #e74c3c;
+        border-color: #e74c3c;
+    }
+
+.btn-warning {
+    background-color: #f39c12;
+    border-color: #f39c12;
+    color: #1e1e1e;
+}
+
+    .btn-warning:hover {
+        background-color: #f1c40f;
+        border-color: #f1c40f;
+        color: #1e1e1e;
+    }
+
+.btn-primary {
+    background-color: #2980b9;
+    border-color: #2980b9;
+}
+
+    .btn-primary:hover {
+        background-color: #3498db;
+        border-color: #3498db;
+    }
+
+.btn-outline-secondary {
+    color: #ccc;
+    border-color: #555;
+}
+
+    .btn-outline-secondary:hover {
+        color: #fff;
+        background-color: #555;
+        border-color: #555;
+    }
+
+/* Estilo para a mensagem de carrinho vazio */
+.empty-cart-container {
+    background-color: #1e1e1e;
+    border-radius: 15px;
+    padding: 50px 20px;
+    border: 1px solid #333;
+}
+
+/* Alertas */
+.alert-info {
+    background-color: #1f3a4f;
+    color: #a6d8ff;
+    border: 1px solid #2980b9;
+    border-left: 5px solid #3498db;
+}
+
